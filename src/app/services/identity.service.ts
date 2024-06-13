@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginRequest, LoginResponse } from '../models/authentication.models';
+import { LoginRequest, AuthResponse, RegisterRequest } from '../models/authentication.models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,11 @@ export class IdentityService {
 
   constructor(private readonly _httpClient: HttpClient) { }
 
-  login(request: LoginRequest): Observable<LoginResponse> {
-    return this._httpClient.post<LoginResponse>(`${this.baseUrl}/login`, request);
+  login(request: LoginRequest): Observable<AuthResponse> {
+    return this._httpClient.post<AuthResponse>(`${this.baseUrl}/login`, request);
+  }
+
+  register(request: RegisterRequest): Observable<AuthResponse> {
+    return this._httpClient.post<AuthResponse>(`${this.baseUrl}/register`, request);
   }
 }

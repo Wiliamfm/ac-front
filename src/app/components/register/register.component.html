@@ -1,0 +1,55 @@
+<div class="container mt-5">
+	<p>Form Status: {{ registerForm.status }}</p>
+	<p>Form Status: {{ print( registerForm.get("email")?.errors ) }}</p>
+	<p>Form Status: {{ print( registerForm.get("password")?.errors ) }}</p>
+	<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+		<div *ngIf="registerForm.invalid && registerForm.errors" class="alert alert-danger">
+			<div *ngIf="registerForm.errors?.['badUsername']">
+				Username already taken.
+			</div>
+		</div>
+		<div class="mb-3">
+			<label for="email" class="form-label">Email address</label>
+			<input formControlName="email" type="email" class="form-control" id="email">
+			<div *ngIf="registerForm.invalid && registerForm.get('email')?.errors" class="alert alert-danger">
+				<div *ngIf="registerForm.get('email')?.errors?.['required']">
+					Name is required.
+				</div>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label for="firstName" class="form-label">First Name</label>
+			<input formControlName="firstName" type="text" class="form-control" id="firstName">
+			<div *ngIf="registerForm.invalid && registerForm.get('firstName')?.errors" class="alert alert-danger">
+				<div *ngIf="registerForm.get('firstName')?.errors?.['required']">
+					First Name is required.
+				</div>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label for="lastName" class="form-label">Last Name</label>
+			<input formControlName="lastName" type="lastName" class="form-control" id="lastName">
+			<div *ngIf="registerForm.invalid && registerForm.get('lastName')?.errors" class="alert alert-danger">
+				<div *ngIf="registerForm.get('lastName')?.errors?.['required']">
+					Last Name is required.
+				</div>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label for="password" class="form-label">Password</label>
+			<input formControlName="password" type="password" class="form-control" id="password">
+			<div *ngIf="registerForm.invalid && registerForm.get('password')?.errors" class="alert alert-danger">
+				<div *ngIf="registerForm.get('password')?.errors?.['required']">
+					Name is required.
+				</div>
+				<div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+					Password should have 6 characters.
+				</div>
+				<div *ngIf="registerForm.get('password')?.errors?.['badCredentials']">
+					Credentials are wrong.
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Submit</button>
+	</form>
+</div>
