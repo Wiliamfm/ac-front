@@ -2,7 +2,12 @@
   <p>Form Status: {{ loginForm.status }}</p>
   <p>Form Status: {{ print( loginForm.get("email")?.errors ) }}</p>
   <p>Form Status: {{ print( loginForm.get("password")?.errors ) }}</p>
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="loginForm.invalid && loginForm.errors" class="alert alert-danger">
+      <div *ngIf="loginForm.errors?.['badCredentials']">
+        Credentials are wrong.
+      </div>
+    </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email address</label>
       <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
@@ -21,6 +26,9 @@
         </div>
         <div *ngIf="loginForm.get('password')?.errors?.['minlength']">
           Password should have 6 characters.
+        </div>
+        <div *ngIf="loginForm.get('password')?.errors?.['badCredentials']">
+          Credentials are wrong.
         </div>
       </div>
     </div>
