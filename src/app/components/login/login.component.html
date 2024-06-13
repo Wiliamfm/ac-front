@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <p>Form Status: {{ loginForm.status }}</p>
+  <p>Form Status: {{ print( loginForm.get("email")?.errors ) }}</p>
+  <p>Form Status: {{ print( loginForm.get("password")?.errors ) }}</p>
+  <form [formGroup]="loginForm">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+      <div *ngIf="loginForm.invalid && loginForm.get('email')?.errors" class="alert alert-danger">
+        <div *ngIf="loginForm.get('email')?.errors?.['required']">
+          Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input formControlName="password" type="password" class="form-control" id="password">
+      <div *ngIf="loginForm.invalid && loginForm.get('password')?.errors" class="alert alert-danger">
+        <div *ngIf="loginForm.get('password')?.errors?.['required']">
+          Name is required.
+        </div>
+        <div *ngIf="loginForm.get('password')?.errors?.['minlength']">
+          Password should have 6 characters.
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+  </form>
+</div>
