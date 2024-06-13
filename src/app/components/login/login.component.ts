@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IdentityService } from '../../services/identity.service';
 import { LoginRequest } from '../../models/authentication.models';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,8 @@ export class LoginComponent {
 
   constructor(
     private readonly _formBuilder: FormBuilder,
-    private readonly _identityService: IdentityService
+    private readonly _identityService: IdentityService,
+    private readonly _router: Router
   ) { }
 
   print(msg: any): string {
@@ -38,6 +39,7 @@ export class LoginComponent {
     this._identityService.login(request).subscribe({
       next: response => {
         document.cookie = `token=${response.token}`;
+        this._router.navigate(["/"]);
       },
       error: error => {
         console.error("Unable to login:\n", error)

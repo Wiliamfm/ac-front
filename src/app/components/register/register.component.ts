@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterRequest } from '../../models/authentication.models';
 import { IdentityService } from '../../services/identity.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent {
 
   constructor(
     private readonly _formBuilder: FormBuilder,
-    private readonly _identityService: IdentityService
+    private readonly _identityService: IdentityService,
+    private readonly _router: Router
   ) { }
 
   print(msg: any): string {
@@ -40,6 +42,7 @@ export class RegisterComponent {
     this._identityService.register(request).subscribe({
       next: response => {
         document.cookie = `token=${response.token}`;
+        this._router.navigate(["/"]);
       },
       error: error => {
         console.error("Unable to register:\n", error)
