@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IdentityService {
-
   private readonly baseUrl = "http://localhost:5246/authentication";
 
   constructor(private readonly _httpClient: HttpClient) { }
@@ -22,5 +21,16 @@ export class IdentityService {
 
   isAuthenticated(): boolean {
     return !!window.sessionStorage.getItem("is_authenticated");
+  }
+
+  getToken(): string {
+    try {
+      const token = document.cookie.split("token=")[1] ?? "";
+      console.log(token);
+      return token;
+    } catch (error) {
+      console.error("Unable to get token from cookie:\n", error);
+      return "";
+    }
   }
 }

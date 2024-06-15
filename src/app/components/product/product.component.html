@@ -1,1 +1,17 @@
-<p>product works!</p>
+<div class="container mt-5">
+  <h1 class="my-5 text-center">Products</h1>
+  <div class="row justify-content-around">
+    @for(product of products; track product.id; let index = $index){
+      <div class="col-sm-5">
+        <div class="card">
+          <h5 class="card-header">{{ product.name }}</h5>
+          <div class="card-body">
+            <h5 class="card-title">Stock: {{ product.stock }}&nbsp; | <b>Price:</b> {{ product.price }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <a routerLink="/products/{{ product.id }}" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
