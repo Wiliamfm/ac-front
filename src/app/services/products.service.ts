@@ -16,13 +16,6 @@ export class ProductsService {
   ) { }
 
   public getList(): Observable<Product[]> {
-    return this._httpClient.get<Product[]>(
-      `${this.baseUrl}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this._identityService.getToken()}`
-        }
-      }
-    );
+    return this._httpClient.get<Product[]>(`${this.baseUrl}`,);
   }
 }
