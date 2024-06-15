@@ -9,7 +9,11 @@
         <a class="nav-link" routerLink="/products" routerLinkActive="active" ariaCurrentWhenActive="page">Products</a>
         <a class="nav-link" routerLink="/sales" routerLinkActive="active" ariaCurrentWhenActive="page">Sales</a>
         <a class="nav-link" routerLink="/reports" routerLinkActive="active" ariaCurrentWhenActive="page">Reports</a>
-        <a class="nav-link" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a>
+        @if (isAuthenticated()) {
+          <button (click)="logout()" class="btn btn-link ps-0" type="button">Logout</button>
+        } @else {
+          <a class="nav-link" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a>
+        }
       </div>
     </div>
   </div>
