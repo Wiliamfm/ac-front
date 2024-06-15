@@ -19,4 +19,8 @@ export class IdentityService {
   register(request: RegisterRequest): Observable<AuthResponse> {
     return this._httpClient.post<AuthResponse>(`${this.baseUrl}/register`, request);
   }
+
+  isAuthenticated(): boolean {
+    return !!window.sessionStorage.getItem("is_authenticated");
+  }
 }
