@@ -38,7 +38,9 @@ export class LoginComponent {
     console.log(request);
     this._identityService.login(request).subscribe({
       next: response => {
-        document.cookie = `token=${response.token}; secure`;
+        this._identityService.setAuthUser(response);
+        //document.cookie = `token=${response.token}; secure`;
+        document.cookie = `token=${response.token}`;
         window.sessionStorage.setItem("is_authenticated", "true");
         this._router.navigate(["/"]);
       },

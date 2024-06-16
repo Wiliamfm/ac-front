@@ -12,7 +12,6 @@ export class ProductsService {
 
   constructor(
     private readonly _httpClient: HttpClient,
-    private readonly _identityService: IdentityService
   ) { }
 
   public getList(): Observable<Product[]> {

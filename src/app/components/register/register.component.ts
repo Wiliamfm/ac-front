@@ -41,6 +41,7 @@ export class RegisterComponent {
     }
     this._identityService.register(request).subscribe({
       next: response => {
+        this._identityService.setAuthUser(response);
         document.cookie = `token=${response.token}; secure`;
         window.sessionStorage.setItem("is_authenticated", "true");
         this._router.navigate(["/"]);

@@ -15,5 +15,6 @@ export type AuthResponse = {
   email: string;
   firstName: string;
   lastName: string;
+  roles: string;
   token: string;
 }

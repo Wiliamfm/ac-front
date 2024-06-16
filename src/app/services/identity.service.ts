@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class IdentityService {
   private readonly baseUrl = "http://localhost:5246/authentication";
+  private authUser: AuthResponse | null = null;
 
   constructor(private readonly _httpClient: HttpClient) { }
 
@@ -32,5 +33,14 @@ export class IdentityService {
       console.error("Unable to get token from cookie:\n", error);
       return "";
     }
+  }
+
+  setAuthUser(authUser: AuthResponse) {
+    this.authUser = authUser;
+  }
+
+  getRoles(): string[] {
+    if (!this.authUser) return [];
+    return this.authUser.roles.split(";");
   }
 }

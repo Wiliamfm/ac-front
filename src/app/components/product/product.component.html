@@ -1,5 +1,10 @@
 <div class="container mt-5">
   <h1 class="my-5 text-center">Products</h1>
+  <div *ngIf="isAdmin()" class="container my-5">
+    <button class="btn btn-primary">
+      Add new product
+    </button>
+  </div>
   <div class="row justify-content-around">
     @for(product of products; track product.id; let index = $index){
       <div class="col-sm-5">
