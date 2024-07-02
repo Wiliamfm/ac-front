@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IdentityService {
-  private readonly baseUrl = "http://localhost:5246/authentication";
+  //private readonly baseUrl = "http://localhost:5246/authentication";
+  private readonly baseUrl = "https://ac-back-eeh5h6e2d7cnhvd5.eastus-01.azurewebsites.net/authentication";
   private authUser: AuthResponse | null = null;
 
   constructor(private readonly _httpClient: HttpClient) { }

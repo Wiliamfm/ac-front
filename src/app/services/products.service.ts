@@ -8,7 +8,8 @@ import { IdentityService } from './identity.service';
   providedIn: 'root'
 })
 export class ProductsService {
-  private readonly baseUrl = "http://localhost:5246/products";
+  //private readonly baseUrl = "http://localhost:5246/products";
+  private readonly baseUrl = "https://ac-back-eeh5h6e2d7cnhvd5.eastus-01.azurewebsites.net/products";
 
   constructor(
     private readonly _httpClient: HttpClient,
