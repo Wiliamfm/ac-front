@@ -1,7 +1,7 @@
 {
   "name": "azure-challenge",
   "version": "0.0.0",
-  "engine": {
+  "engines": {
     "node": ">=20.9.0",
     "npm": ">=8.0.0"
   },
