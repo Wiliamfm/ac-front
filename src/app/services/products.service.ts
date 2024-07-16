@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../models/products.models';
+import { Product, CreateProduct } from '../models/products.models';
 import { Observable } from 'rxjs';
 import { IdentityService } from './identity.service';
 
@@ -17,5 +17,9 @@ export class ProductsService {
 
   public getList(): Observable<Product[]> {
     return this._httpClient.get<Product[]>(`${this.baseUrl}`,);
+  }
+
+  public create(product: CreateProduct): Observable<Product> {
+    return this._httpClient.post<Product>(`${this.baseUrl}`, product);
   }
 }

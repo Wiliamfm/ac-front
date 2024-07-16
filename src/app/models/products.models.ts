@@ -5,3 +5,5 @@ export type Product = {
   price: number;
   stock: number;
 };
+
+export type CreateProduct = Omit<Product, "id">;
